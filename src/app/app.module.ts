@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+//App
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TaskComponent } from './task/task.component';
 
+//Material
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+//CDk
+import { DragDropModule, transferArrayItem } from '@angular/cdk/drag-drop';
 
-import { TaskComponent } from './task/task.component';
 
 @NgModule({
   declarations: [AppComponent, TaskComponent],
@@ -17,7 +21,8 @@ import { TaskComponent } from './task/task.component';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent],
