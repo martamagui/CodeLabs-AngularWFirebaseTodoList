@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "codelabsangulartodolist": {
+      "hosting": {
+        "AngualrWFirebaseTodoList": [
+          "codelabsangulartodolist"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "codelabsangulartodolist"
+  }
+}
