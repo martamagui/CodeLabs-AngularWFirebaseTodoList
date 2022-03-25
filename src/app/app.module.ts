@@ -19,15 +19,18 @@ import { MatInputModule } from '@angular/material/input';
 import { DragDropModule, transferArrayItem } from '@angular/cdk/drag-drop';
 import { TaskDialogComponent } from './task-dialog/task-dialog.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
-import { environment } from '../environments/environment';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+
+
+//Firebase
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 
 @NgModule({
   declarations: [AppComponent, TaskComponent, TaskDialogComponent],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
     MatCardModule,
@@ -36,9 +39,9 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     MatDialogModule,
     MatInputModule,
     FormsModule,
-    BrowserAnimationsModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore())
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

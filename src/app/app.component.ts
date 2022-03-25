@@ -2,15 +2,20 @@ import { Component } from '@angular/core';
 //Material and CDK
 import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
 import { MatDialog } from '@angular/material/dialog';
+//Firebase
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+
 //APP
 import { Task } from './task/interface/task';
-import { TaskDialogComponent, TaskDialogResult } from './task-dialog/task-dialog.component';
-
+import {
+  TaskDialogComponent,
+  TaskDialogResult,
+} from './task-dialog/task-dialog.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   todo: Task[] = [
@@ -25,7 +30,7 @@ export class AppComponent {
   ];
   inProgress: Task[] = [];
   done: Task[] = [];
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog, private store: AngularFirestore) {}
 
   editTask(list: 'done' | 'todo' | 'inProgress', task: Task): void {
     const dialogRef = this.dialog.open(TaskDialogComponent, {
@@ -35,18 +40,20 @@ export class AppComponent {
         enableDelete: true,
       },
     });
-    dialogRef.afterClosed().subscribe((result: TaskDialogResult|undefined) => {
-      if (!result) {
-        return;
-      }
-      const dataList = this[list];
-      const taskIndex = dataList.indexOf(task);
-      if (result.delete) {
-        dataList.splice(taskIndex, 1);
-      } else {
-        dataList[taskIndex] = task;
-      }
-    });
+    dialogRef
+      .afterClosed()
+      .subscribe((result: TaskDialogResult | undefined) => {
+        if (!result) {
+          return;
+        }
+        const dataList = this[list];
+        const taskIndex = dataList.indexOf(task);
+        if (result.delete) {
+          dataList.splice(taskIndex, 1);
+        } else {
+          dataList[taskIndex] = task;
+        }
+      });
   }
 
   drop(event: CdkDragDrop<Task[]>): void {
@@ -69,7 +76,7 @@ export class AppComponent {
     });
     dialogRef
       .afterClosed()
-      .subscribe((result: TaskDialogResult|undefined) => {
+      .subscribe((result: TaskDialogResult | undefined) => {
         if (!result) {
           return;
         }
