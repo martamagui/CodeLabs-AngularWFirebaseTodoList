@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Task } from './task/interface/task';
 
 
 @Component({
@@ -7,5 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'AngualrWFirebaseTodoList';
+  title = 'AngularWFirebaseTodoList';
+  todo: Task[] = [
+    {
+      title: 'Buy milk',
+      description: 'Go to the store and buy milk'
+    },
+    {
+      title: 'Create a TodoList app',
+      description: 'Using Firebase and Angular create a TodoList app!'
+    }
+  ];
 }

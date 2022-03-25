@@ -2,3 +2,4 @@
   <mat-icon>local_fire_department</mat-icon>
   <span>Angular With Firebase TodoList</span>
 </mat-toolbar>
+<app-task *ngFor="let task of todo" [task]="task"></app-task>
