@@ -1,4 +1,4 @@
-// Create a eviroment file with your credentials, just like sos
+// Create a eviroment file eviroment.prod and with your credentials, just like sos
 
 export const environmentCopy = {
   production: false,
